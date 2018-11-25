@@ -27,7 +27,9 @@ MainWindow::MainWindow(QWidget *parent) :
     int f1 = settings->value("f1",400).toInt();
     int f2 = settings->value("f2",400).toInt();
 
-        ui->splitter_2->setSizes({f1,f2});
+    ui->splitter_2->setSizes({f1,f2});
+
+    addComboBox();
 
 
 
@@ -146,12 +148,7 @@ void MainWindow::on_actionopen_triggered()
 
 
 ////перемещение сплиттера
-//void MainWindow::on_splitter_2_splitterMoved(int pos, int index)
-//{
 
-
-
-//}
 
 void MainWindow::on_splitter_2_splitterMoved(int pos, int index)
 {
@@ -176,5 +173,21 @@ void MainWindow::on_actionSearch_list_triggered()
     default:{
     }
 
-        }
+    }
+}
+
+void MainWindow::addComboBox()
+{
+    ui->comboBox->clear();
+            QFile f(QDir::homePath()+"/.bsrlog");
+            if (f.open(QIODevice::ReadWrite))
+            {
+
+                QTextStream in(&f);
+                   while (!in.atEnd())
+                   {
+                       ui->comboBox->addItem(in.readLine());
+                   }
+            }
+            f.close();
 }

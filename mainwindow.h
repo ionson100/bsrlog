@@ -5,6 +5,9 @@
 #include <QSettings>
 #include <QStandardItem>
 #include<QStringListModel>
+#include <qdir.h>
+#include <qfile.h>
+#include <qtextstream.h>
 
 namespace Ui {
 class MainWindow;
@@ -18,7 +21,7 @@ class MainWindow :  public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+ void addComboBox();
 
 
 
@@ -43,6 +46,8 @@ private slots:
     void on_actionSearch_list_triggered();
 
 private:
+     Ui::MainWindow *ui;
+
 
     QSettings *settings;
 
@@ -57,7 +62,7 @@ private:
     QStringListModel *model_index;
     QStringList select_index;
 
-    Ui::MainWindow *ui;
+
 
 };
 

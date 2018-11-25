@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>bsrlog</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_3">
@@ -64,7 +64,7 @@
           <item>
            <widget class="QPushButton" name="pushButton">
             <property name="text">
-             <string>поиск</string>
+             <string>search</string>
             </property>
            </widget>
           </item>
@@ -97,7 +97,7 @@
    </property>
    <widget class="QMenu" name="menusettings">
     <property name="title">
-     <string>File</string>
+     <string>&amp;File</string>
     </property>
     <addaction name="separator"/>
     <addaction name="actionopen"/>
@@ -105,7 +105,7 @@
    </widget>
    <widget class="QMenu" name="menusettings_2">
     <property name="title">
-     <string>Settings</string>
+     <string>&amp;Settings</string>
     </property>
     <addaction name="actionSearch_list"/>
    </widget>
