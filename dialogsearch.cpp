@@ -4,7 +4,7 @@
 
 DialogSearch::DialogSearch(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::DialogSearch)
+     ui(new Ui::DialogSearch)
 {
    uim= dynamic_cast<MainWindow*>(parent);
     ui->setupUi(this);
