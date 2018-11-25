@@ -12,6 +12,7 @@ class MainWindow;
 
 class MainWindow :  public QMainWindow
 {
+
     Q_OBJECT
 
 public:
@@ -39,6 +40,8 @@ private slots:
 
     void on_splitter_2_splitterMoved(int pos, int index);
 
+    void on_actionSearch_list_triggered();
+
 private:
 
     QSettings *settings;
@@ -55,6 +58,7 @@ private:
     QStringList select_index;
 
     Ui::MainWindow *ui;
+
 };
 
 #endif // MAINWINDOW_H

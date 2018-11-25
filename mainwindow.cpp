@@ -10,12 +10,14 @@
 #include<QTextStream>
 #include <QLineEdit>
 #include <QSplitter>
+#include <dialogsearch.h>
 
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
     ui->listView->setSelectionMode(QAbstractItemView::ExtendedSelection);
     on_load_data("/home/bsr/aa.txt");
@@ -158,4 +160,21 @@ void MainWindow::on_splitter_2_splitterMoved(int pos, int index)
     settings->setValue("f2", d[1]);
     settings->sync();
 
+}
+
+void MainWindow::on_actionSearch_list_triggered()
+{
+    DialogSearch s(this);
+
+    switch( s.exec() ) {
+        case QDialog::Accepted:
+
+            break;
+        case QDialog::Rejected:
+
+            break;
+    default:{
+    }
+
+        }
 }

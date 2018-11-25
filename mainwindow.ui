@@ -97,7 +97,7 @@
    </property>
    <widget class="QMenu" name="menusettings">
     <property name="title">
-     <string>file</string>
+     <string>File</string>
     </property>
     <addaction name="separator"/>
     <addaction name="actionopen"/>
@@ -105,8 +105,9 @@
    </widget>
    <widget class="QMenu" name="menusettings_2">
     <property name="title">
-     <string>settings</string>
+     <string>Settings</string>
     </property>
+    <addaction name="actionSearch_list"/>
    </widget>
    <addaction name="menusettings"/>
    <addaction name="menusettings_2"/>
@@ -134,6 +135,11 @@
   <action name="actionclose">
    <property name="text">
     <string>close</string>
+   </property>
+  </action>
+  <action name="actionSearch_list">
+   <property name="text">
+    <string>Search list</string>
    </property>
   </action>
  </widget>
