@@ -92,7 +92,7 @@
      <x>0</x>
      <y>0</y>
      <width>808</width>
-     <height>22</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menusettings">
@@ -108,6 +108,7 @@
      <string>&amp;Settings</string>
     </property>
     <addaction name="actionSearch_list"/>
+    <addaction name="actionSettings"/>
    </widget>
    <addaction name="menusettings"/>
    <addaction name="menusettings_2"/>
@@ -140,6 +141,11 @@
   <action name="actionSearch_list">
    <property name="text">
     <string>Search list</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="text">
+    <string>Settings</string>
    </property>
   </action>
  </widget>

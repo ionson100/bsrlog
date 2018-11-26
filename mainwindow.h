@@ -19,19 +19,15 @@ class MainWindow :  public QMainWindow
     Q_OBJECT
 
 public:
+    const QString NAME1="bsr4",NAME2="bsrion4";
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
  void addComboBox();
 
-
-
-
-
-
 private slots:
-
+    void on_actionSsettings_triggered(bool b);
     void focusCombo();
-    void on_listView_1_clicked(const QModelIndex &index);
+    void on_listView_1_clicked( const QModelIndex &index);
 
     void on_pushButton_clicked();
 
@@ -44,6 +40,7 @@ private slots:
     void on_splitter_2_splitterMoved(int pos, int index);
 
     void on_actionSearch_list_triggered();
+
 
 private:
      Ui::MainWindow *ui;

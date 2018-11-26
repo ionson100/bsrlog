@@ -27,15 +27,18 @@ CONFIG += c++11
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-    dialogsearch.cpp
+    dialogsearch.cpp \
+    dialogsettings.cpp
 
 HEADERS += \
         mainwindow.h \
-    dialogsearch.h
+    dialogsearch.h \
+    dialogsettings.h
 
 FORMS += \
         mainwindow.ui \
-    dialogsearch.ui
+    dialogsearch.ui \
+    dialogsettings.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

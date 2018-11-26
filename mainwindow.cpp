@@ -11,6 +11,7 @@
 #include <QLineEdit>
 #include <QSplitter>
 #include <dialogsearch.h>
+#include<dialogsettings.h>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -20,16 +21,19 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
     ui->listView->setSelectionMode(QAbstractItemView::ExtendedSelection);
-    on_load_data("/home/bsr/aa.txt");
+   // on_load_data("/home/bsr/aa.txt");
     new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_F), this, SLOT(focusCombo()));
     connect(ui->comboBox->lineEdit(), SIGNAL(returnPressed()),this, SLOT(on_pushButton_clicked()));
-    settings=new QSettings("bsr4","bsrion4");
+    settings=new QSettings(NAME1,NAME2);
     int f1 = settings->value("f1",400).toInt();
     int f2 = settings->value("f2",400).toInt();
 
     ui->splitter_2->setSizes({f1,f2});
 
     addComboBox();
+    connect(ui->actionSettings,SIGNAL(triggered(bool)),this,SLOT(on_actionSsettings_triggered(bool)));
+
+
 
 
 
@@ -122,7 +126,8 @@ void MainWindow::on_pushButton_clicked()
     for(int i=0;i<select_index.size();i++){
         int d=select_index[i].toInt();
         QModelIndex vIndex = ui->listView->model()->index(d,0);
-        ui->listView->model()->setData(vIndex, QBrush(Qt::lightGray), Qt::BackgroundColorRole);
+         QColor oldColor = settings->value("colorrow", QColor(Qt::darkYellow)).value<QColor>();
+        ui->listView->model()->setData(vIndex, QBrush(oldColor), Qt::BackgroundColorRole);
     }
 }
 
@@ -174,6 +179,25 @@ void MainWindow::on_actionSearch_list_triggered()
     }
 
     }
+}
+
+void MainWindow::on_actionSsettings_triggered(bool b)
+{
+
+    DialogSettings d(this);
+    d.exec();
+
+//    QMessageBox msgBox;
+//    msgBox.setWindowTitle("title");
+//    msgBox.setText("Question");
+//    msgBox.setStandardButtons(QMessageBox::Yes);
+//    msgBox.addButton(QMessageBox::No);
+//    msgBox.setDefaultButton(QMessageBox::No);
+//    if(msgBox.exec() == QMessageBox::Yes){
+//      // do something
+//    }else {
+//      // do something else
+//    }
 }
 
 void MainWindow::addComboBox()
