@@ -82,6 +82,20 @@ void MainWindow::on_load_data(const QString str)
 
     file.close();
 
+    QString style = "QListView "
+                    "{"
+                    "background: #ff0000;"
+                    "font-family: Times New Roman;font-size: 10pt;"
+                    "}";
+                    "QListView::item { ";
+                    "height: 20px;";
+                    "}";
+                    "QListView::item:disabled { ";
+                    "color: blue;";
+                    "}";
+       ui->listView->setStyleSheet(style);
+       ui->listView->show();
+
 
 }
 

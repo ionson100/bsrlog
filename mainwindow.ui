@@ -31,7 +31,7 @@
            <enum>Qt::Vertical</enum>
           </property>
           <widget class="QWidget" name="layoutWidget">
-           <layout class="QHBoxLayout" name="horizontalLayout" stretch="11">
+           <layout class="QHBoxLayout" name="horizontalLayout" stretch="0">
             <property name="spacing">
              <number>2</number>
             </property>
@@ -73,7 +73,7 @@
        </layout>
       </widget>
       <widget class="QWidget" name="horizontalLayoutWidget_2">
-       <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="12">
+       <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0">
         <property name="spacing">
          <number>2</number>
         </property>
