@@ -19,7 +19,7 @@ class MainWindow :  public QMainWindow
     Q_OBJECT
 
 public:
-    const QString NAME1="bsr4",NAME2="bsrion4";
+    //const QString NAME1="bsr4",NAME2="bsrion4";
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
  void addComboBox();

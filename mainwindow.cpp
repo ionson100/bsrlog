@@ -12,6 +12,7 @@
 #include <QSplitter>
 #include <dialogsearch.h>
 #include<dialogsettings.h>
+#include<utils.h>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -19,12 +20,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
 
+
     ui->setupUi(this);
     ui->listView->setSelectionMode(QAbstractItemView::ExtendedSelection);
    // on_load_data("/home/bsr/aa.txt");
     new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_F), this, SLOT(focusCombo()));
     connect(ui->comboBox->lineEdit(), SIGNAL(returnPressed()),this, SLOT(on_pushButton_clicked()));
-    settings=new QSettings(NAME1,NAME2);
+    settings=new QSettings(Utils::getName1(),Utils::getName2());
     int f1 = settings->value("f1",400).toInt();
     int f2 = settings->value("f2",400).toInt();
 
@@ -81,21 +83,7 @@ void MainWindow::on_load_data(const QString str)
     ui->listView->setModel(model);
 
     file.close();
-
-    QString style = "QListView "
-                    "{"
-                    "background: #ff0000;"
-                    "font-family: Times New Roman;font-size: 10pt;"
-                    "}";
-                    "QListView::item { ";
-                    "height: 20px;";
-                    "}";
-                    "QListView::item:disabled { ";
-                    "color: blue;";
-                    "}";
-       ui->listView->setStyleSheet(style);
-       ui->listView->show();
-
+    Utils::setStyle1(ui->listView);
 
 }
 
@@ -123,7 +111,7 @@ void MainWindow::on_pushButton_clicked()
     for(int i=0;i<select_index.size();i++){
         int d=select_index[i].toInt();
         QModelIndex vIndex = ui->listView->model()->index(d,0);
-        ui->listView->model()->setData(vIndex, QBrush(Qt::white), Qt::BackgroundColorRole);
+        ui->listView->model()->setData(vIndex, QBrush(Qt::transparent), Qt::BackgroundColorRole);
     }
   select_index.clear();
     for(int i=0;i<list.size();i++){
