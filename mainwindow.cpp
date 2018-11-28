@@ -26,7 +26,8 @@ MainWindow::MainWindow(QWidget *parent) :
    // on_load_data("/home/bsr/aa.txt");
     new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_F), this, SLOT(focusCombo()));
     connect(ui->comboBox->lineEdit(), SIGNAL(returnPressed()),this, SLOT(on_pushButton_clicked()));
-    settings=new QSettings(Utils::getName1(),Utils::getName2());
+
+    settings= MySettings().getSettings();
     int f1 = settings->value("f1",400).toInt();
     int f2 = settings->value("f2",400).toInt();
 
@@ -83,7 +84,7 @@ void MainWindow::on_load_data(const QString str)
     ui->listView->setModel(model);
 
     file.close();
-    Utils::setStyle1(ui->listView);
+    Utils::getStyle1(ui->listView);
 
 }
 

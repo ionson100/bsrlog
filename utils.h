@@ -5,6 +5,7 @@
 #include <QSettings>
 #include<QString>
 #include<mainwindow.h>
+#include<mysettings.h>
 
 
 
@@ -23,40 +24,20 @@ public:
         return "bsrion4";
     }
 
-    static  QString getStyleString1(){
-        QString style = "QListView "
-                        "\n"
-                        "{"
-                        "\n"
-                        "color: #3F412C;"
-                        "\n"
-                        "selection-background-color: blue;"
-                        "\n"
-                        "selection-color: #0E0E06;"
-                        "\n"
-                        "background: #F2F3E7;"
-                        "\n"
-                        "font-family: Times New Roman;font-size: 13pt;"
-                        "\n"
-                        "}"
-                        "\n"
-                        "QListView::item { "
-                        "\n"
-                        "height: 20px;"
-                        "\n"
-                        "}";
-        return style;
 
 
-    }
-
-    static  void  setStyle1( QListView *s){
-
-        QSettings settings(getName1(),getName2());
-        QString style=settings.value("style1",getStyleString1()).toString();
+    static  void  getStyle1( QListView *s){
+        MySettings settings;
+        QString style=settings.getStyle1();
         s->setStyleSheet(style);
         s->show();
+    }
 
+    static  void  setStyle1(const QString str){
+        MySettings settings;
+
+        settings.getSettings()->setValue("style1",str);
+        settings.getSettings()->sync();
     }
 };
 

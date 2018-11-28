@@ -29,13 +29,15 @@ SOURCES += \
         mainwindow.cpp \
     dialogsearch.cpp \
     dialogsettings.cpp \
-    utils.cpp
+    utils.cpp \
+    mysettings.cpp
 
 HEADERS += \
         mainwindow.h \
     dialogsearch.h \
     dialogsettings.h \
-    utils.h
+    utils.h \
+    mysettings.h
 
 FORMS += \
         mainwindow.ui \

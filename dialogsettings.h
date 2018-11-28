@@ -23,8 +23,12 @@ private slots:
 
     void on_pushButton_color_clicked();
 
+    void on_pushButton_style1_save_clicked();
+
+    void on_pushButton_rolback_base_clicked();
+
 private:
-    QSettings *settings;
+
 
     Ui::DialogSettings *ui;
 };
