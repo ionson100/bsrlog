@@ -23,6 +23,7 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
  void addComboBox();
+ void checkStyle1List(const QString s);
 
 private slots:
     void on_actionSsettings_triggered(bool b);
@@ -41,6 +42,8 @@ private slots:
 
     void on_actionSearch_list_triggered();
 
+
+    void on_lineEdit_fast_finder_textChanged(const QString &arg1);
 
 private:
      Ui::MainWindow *ui;

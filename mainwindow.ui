@@ -7,52 +7,70 @@
     <x>0</x>
     <y>0</y>
     <width>808</width>
-    <height>483</height>
+    <height>535</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>bsrlog</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout_3">
+   <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
      <widget class="QSplitter" name="splitter_2">
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QWidget" name="layoutWidget">
+      <widget class="QWidget" name="">
        <layout class="QVBoxLayout" name="verticalLayout">
-        <property name="spacing">
-         <number>2</number>
-        </property>
         <item>
-         <widget class="QSplitter" name="splitter">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
+         <widget class="QListView" name="listView">
+          <property name="uniformItemSizes">
+           <bool>true</bool>
           </property>
-          <widget class="QWidget" name="layoutWidget">
-           <layout class="QHBoxLayout" name="horizontalLayout" stretch="0">
-            <property name="spacing">
-             <number>2</number>
-            </property>
-            <property name="sizeConstraint">
-             <enum>QLayout::SetMaximumSize</enum>
-            </property>
-            <item>
-             <widget class="QListView" name="listView">
-              <property name="uniformItemSizes">
-               <bool>true</bool>
-              </property>
-             </widget>
-            </item>
-           </layout>
-          </widget>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="3,0">
+         <layout class="QHBoxLayout" name="horizontalLayout">
+          <item>
+           <widget class="QLineEdit" name="lineEdit_fast_finder">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>33</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
+           </widget>
+          </item>
           <item>
            <widget class="QComboBox" name="comboBox">
+            <property name="minimumSize">
+             <size>
+              <width>300</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>33</height>
+             </size>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>9</pointsize>
+             </font>
+            </property>
             <property name="contextMenuPolicy">
              <enum>Qt::ActionsContextMenu</enum>
             </property>
@@ -63,6 +81,12 @@
           </item>
           <item>
            <widget class="QPushButton" name="pushButton">
+            <property name="maximumSize">
+             <size>
+              <width>16777215</width>
+              <height>33</height>
+             </size>
+            </property>
             <property name="text">
              <string>search</string>
             </property>
@@ -72,16 +96,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="horizontalLayoutWidget_2">
-       <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="0">
-        <property name="spacing">
-         <number>2</number>
-        </property>
-        <item>
-         <widget class="QListView" name="listView_1"/>
-        </item>
-       </layout>
-      </widget>
+      <widget class="QListView" name="listView_1"/>
      </widget>
     </item>
    </layout>

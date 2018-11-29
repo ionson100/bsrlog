@@ -1,3 +1,4 @@
+#include "findercolordelegate.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -76,7 +77,9 @@ void MainWindow::on_load_data(const QString str)
     model = new QStandardItemModel(ui->listView);
 
     for(int i=0;i<list.size();i++){
-        model->setItem( i, new QStandardItem(list[i]) );
+        QStandardItem *s=new QStandardItem(list[i]);
+
+        model->setItem( i, s );
     }
 
 
@@ -217,4 +220,26 @@ void MainWindow::addComboBox()
                    }
             }
             f.close();
+}
+
+void MainWindow::checkStyle1List(const QString s)
+{
+    ui->listView->setStyleSheet(s);
+    ui->listView_1->show();
+}
+
+void MainWindow::on_lineEdit_fast_finder_textChanged(const QString &arg1)
+{
+
+
+    ui->listView->setItemDelegate(new FinderColorDelegate(arg1));
+
+    for(int i=0;i<list.size();i++){
+        QString s=list[i];
+//        if(s.contains(str)){
+//            list_select.append(s);
+//            select_index.append(QString::number(i));
+//        }
+    }
+
 }

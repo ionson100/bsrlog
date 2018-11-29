@@ -30,14 +30,16 @@ SOURCES += \
     dialogsearch.cpp \
     dialogsettings.cpp \
     utils.cpp \
-    mysettings.cpp
+    mysettings.cpp \
+    findercolordelegate.cpp
 
 HEADERS += \
         mainwindow.h \
     dialogsearch.h \
     dialogsettings.h \
     utils.h \
-    mysettings.h
+    mysettings.h \
+    findercolordelegate.h
 
 FORMS += \
         mainwindow.ui \

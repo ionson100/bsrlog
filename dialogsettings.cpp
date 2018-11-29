@@ -22,6 +22,7 @@ DialogSettings::DialogSettings(QWidget *parent) :
      ui->pushButton_color->update();
      ui->pushButton_color->setFlat(true);
      ui->textEditStyle1->setText(sett.getStyle1());
+     QObject::connect(ui->textEditStyle1,SIGNAL(textChanged()),this,SLOT(on_textChangedStyle1()));
 
 }
 
@@ -41,7 +42,8 @@ void DialogSettings::on_pushButton_color_clicked()
     MySettings sett;
     QColor oldColor = sett.getColorSelectButton();
     QColor newColor = QColorDialog::getColor(oldColor,parentWidget());
-    if(newColor !=oldColor){
+
+    if(newColor !=oldColor&&newColor.isValid()){
         MySettings sett;
         sett.setColorSelectButton(newColor);
         QPalette pal =  ui->pushButton_color->palette();
@@ -50,8 +52,6 @@ void DialogSettings::on_pushButton_color_clicked()
         ui->pushButton_color->setPalette(pal);
         ui->pushButton_color->update();
         ui->pushButton_color->setFlat(true);
-
-
     }
 }
 
@@ -66,4 +66,15 @@ void DialogSettings::on_pushButton_rolback_base_clicked()
 {
     MySettings s;
     ui->textEditStyle1->setText(s.getStyleString1());
+}
+
+void DialogSettings::on_textChangedStyle1()
+{
+    uim->checkStyle1List(ui->textEditStyle1->toPlainText());
+
+}
+
+void DialogSettings::on_pushButton_2_clicked()
+{
+    this->close();
 }

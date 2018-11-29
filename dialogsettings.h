@@ -26,6 +26,9 @@ private slots:
     void on_pushButton_style1_save_clicked();
 
     void on_pushButton_rolback_base_clicked();
+    void on_textChangedStyle1();
+
+    void on_pushButton_2_clicked();
 
 private:
 
