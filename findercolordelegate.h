@@ -23,6 +23,8 @@ public:
         this->str=str;
     }
 
+
+
     void paint(QPainter* painter, const QStyleOptionViewItem & option, const QModelIndex &index) const
     {
         QStyleOptionViewItem options = option;
@@ -31,44 +33,57 @@ public:
 
         painter->save();
 
-        QTextDocument doc;
         QString s=options.text;
-        s.replace(str,"<font color=\"Red\">"+str+"</font>");
-
-        doc.setDefaultFont(this->font);
-        doc.setHtml(s);
 
 
 
 
         if( option.state & QStyle::State_Selected )//it is your selection
-          {
-              if(index.row()%2)//here we try to see is it a specific item
-                  painter->fillRect( option.rect,Qt::green );//special color
-              else
-                  painter->fillRect( option.rect, option.palette.highlight() );
-              painter->drawText(option.rect,s);//text of item
-          }else{
-            options.text = "";
-            options.widget->style()->drawControl(QStyle::CE_ItemViewItem, &options, painter);
-
-            painter->translate(options.rect.left(), options.rect.top());
-            //QRect clip(0, 0, options.rect.width(), options.rect.height());
-            doc.drawContents(painter);
+        {
+            painter->fillRect( options.rect, option.palette.highlight() );
 
         }
+        painter->drawText(options.rect,s);//text of item
+
+        if(s.contains(str)){
+            QRect r3( option.rect.left(), option.rect.top()+5, 11, 16 );
+            painter->drawRect(r3);
+        }
+
+
+//         else {
+//            QTextDocument doc;
+
+//            s.replace(str,"<font color=\"Red\">"+str+"</font>");
+
+//            doc.setDefaultFont(this->font);
+//            doc.setHtml(s);
+//            options.text = "      ";
+//            options.widget->style()->drawControl(QStyle::CE_ItemViewItem, &options, painter);
+
+
+//            painter->translate(options.rect.left(), options.rect.top());
+//            QRect clip(0, 0, options.rect.width(), options.rect.height());
+//            doc.drawContents(painter,clip);
+//        }
+
+
+
         painter->restore();
     }
 
     QSize sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const
     {
-        QStyleOptionViewItem options = option;
-        initStyleOption(&options, index);
+        //        QStyleOptionViewItem options = option;
+        //        initStyleOption(&options, index);
 
-        QTextDocument doc;
-        doc.setHtml(options.text);
-        doc.setTextWidth(options.rect.width());
-        return QSize(doc.idealWidth(), doc.size().height());
+        //        QTextDocument doc;
+        //        doc.setHtml(options.text);
+        //        doc.setTextWidth(options.rect.width());
+        //        return QSize(doc.idealWidth(), doc.size().height());
+        QSize result = QStyledItemDelegate::sizeHint(option, index);
+        result.setHeight(result.height()*2);
+        return result;
     }
 };
 

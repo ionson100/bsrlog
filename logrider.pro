@@ -31,7 +31,8 @@ SOURCES += \
     dialogsettings.cpp \
     utils.cpp \
     mysettings.cpp \
-    findercolordelegate.cpp
+    findercolordelegate.cpp \
+    htmldelegate.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -39,7 +40,8 @@ HEADERS += \
     dialogsettings.h \
     utils.h \
     mysettings.h \
-    findercolordelegate.h
+    findercolordelegate.h \
+    htmldelegate.h
 
 FORMS += \
         mainwindow.ui \

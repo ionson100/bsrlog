@@ -1,4 +1,5 @@
 #include "findercolordelegate.h"
+#include "htmldelegate.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -36,6 +37,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     addComboBox();
     connect(ui->actionSettings,SIGNAL(triggered(bool)),this,SLOT(on_actionSsettings_triggered(bool)));
+    Utils::getStyle1(ui->listView);
+     ui->listView->setItemDelegate(new HtmlDelegate("-~~~-"));
 
 
 
@@ -231,8 +234,10 @@ void MainWindow::checkStyle1List(const QString s)
 void MainWindow::on_lineEdit_fast_finder_textChanged(const QString &arg1)
 {
 
+    ui->listView->setItemDelegate(new HtmlDelegate(arg1));
 
-    ui->listView->setItemDelegate(new FinderColorDelegate(arg1));
+
+  //  ui->listView->setItemDelegate(new FinderColorDelegate(arg1));
 
     for(int i=0;i<list.size();i++){
         QString s=list[i];
