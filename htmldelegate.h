@@ -1,6 +1,10 @@
 #ifndef HTMLDELEGATE_H
 #define HTMLDELEGATE_H
 
+#include "mysettings.h"
+
+#include "mainwindow.h"
+
 #include <QPainter>
 #include <QStyleOptionViewItem>
 #include <QStyledItemDelegate>
@@ -13,13 +17,15 @@ class HtmlDelegate : public QStyledItemDelegate
 {
 public: HtmlDelegate(const QString str){
 
-        font.setFamily("Times New Roman");
-        font.setPointSize(12);
+       set=new MySettings;
+        font=set->getFont1();
+
         this->str=str;
 
     }
 
 protected:
+    MySettings *set;
     QString str;
     QFont font;
     void paint(QPainter *painter, const QStyleOptionViewItem &option, const QModelIndex &index) const
@@ -32,9 +38,16 @@ protected:
             QTextDocument doc;
 
 
+            //index.data().setValue(1);
 
+            QColor text=set->getColorText();
             QString s=optionV4.text;
-            s.replace(str,"<font color=\"Red\">"+this->str+"</font>");
+            if(s.contains(str)){
+                MainWindow::getSetSelect()->insert(index.row());
+                s.replace(str,"<font color=\"Red\">"+this->str+"</font>");
+            }
+
+            s="<font color=\""+text.name()+"\">"+s+"</font>";
             doc.setDefaultFont(this->font);
             doc.setHtml(s);
             /// Painting item without text
@@ -59,13 +72,18 @@ protected:
     }
     QSize sizeHint ( const QStyleOptionViewItem & option, const QModelIndex & index ) const{
         {
-            QStyleOptionViewItemV4 optionV4 = option;
-            initStyleOption(&optionV4, index);
+            QSize result = QStyledItemDelegate::sizeHint(option, index);
 
-            QTextDocument doc;
-            doc.setHtml(optionV4.text);
-            doc.setTextWidth(optionV4.rect.width());
-            return QSize(doc.idealWidth(), doc.size().height());
+            double sd=this->set->getValueHeigcht();
+            result.setHeight(result.height()*sd);
+            return result;
+//            QStyleOptionViewItemV4 optionV4 = option;
+//            initStyleOption(&optionV4, index);
+
+//            QTextDocument doc;
+//            doc.setHtml(optionV4.text);
+//            doc.setTextWidth(optionV4.rect.width());
+//            return QSize(doc.idealWidth(), doc.size().height());
 
         }
     }

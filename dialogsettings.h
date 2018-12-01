@@ -1,6 +1,8 @@
 #ifndef DIALOGSETTINGS_H
 #define DIALOGSETTINGS_H
 
+#include "mysettings.h"
+
 #include <QDialog>
 #include<mainwindow.h>
 #include<QSettings>
@@ -18,6 +20,8 @@ public:
     explicit DialogSettings(QWidget *parent = 0);
     ~DialogSettings();
 
+    void refrashButton(const QPushButton *button, QColor color, MySettings sett);
+    void refrashButton(QPushButton *button, QColor color);
 private slots:
     void on_pushButton_3_clicked();
 
@@ -30,7 +34,24 @@ private slots:
 
     void on_pushButton_2_clicked();
 
+    void on_pushButton_font_dialog_clicked();
+
+    void on_pushButton_sbc_clicked();
+
+    void on_pushButton_sel_text_color_clicked();
+
+    void on_pushButton_stxc_clicked();
+
+    void on_pushButton_background_clicked();
+
+    void on_pushButton_color_text_clicked();
+
+    void on_spinBox1_valueChanged(int arg1);
+
+    void on_doubleSpinBox1_valueChanged(double arg1);
+
 private:
+    void refrashButton(const QPushButton button,QColor color, MySettings sett);
 
 
     Ui::DialogSettings *ui;

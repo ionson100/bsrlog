@@ -44,6 +44,23 @@ public:
 
     QColor getColorSelectButton();
     void setColorSelectButton(QColor col);
+    void setFont1(QFont fint);
+    void getfontDialog( QWidget *parent);
+    QFont getFont1();
+    QColor getColorselectBackground();
+    void setColorselectBackground(QColor color);
+
+    QColor getColorselectetedText();
+    void setColorselectetedText(QColor color);
+
+    QColor getColorBackground();
+    void setColorBackground(QColor color);
+
+    QColor getColorText();
+    void setColorText(QColor color);
+
+    double getValueHeigcht();
+    void setValueHeigcht(double value);
 
 
 };

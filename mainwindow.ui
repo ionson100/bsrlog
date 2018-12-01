@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>808</width>
+    <width>1143</width>
     <height>535</height>
    </rect>
   </property>
@@ -20,7 +20,7 @@
       <property name="orientation">
        <enum>Qt::Vertical</enum>
       </property>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
          <widget class="QListView" name="listView">
@@ -49,6 +49,32 @@
              <font>
               <pointsize>9</pointsize>
              </font>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_previous">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Previous</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_nex">
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="text">
+             <string>Nex</string>
             </property>
            </widget>
           </item>
@@ -106,8 +132,8 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>808</width>
-     <height>27</height>
+     <width>1143</width>
+     <height>18</height>
     </rect>
    </property>
    <widget class="QMenu" name="menusettings">
@@ -135,6 +161,9 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
+   <addaction name="actionopenfile"/>
+   <addaction name="actionfinderstring"/>
+   <addaction name="actionsettingstools"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionopen">
@@ -163,8 +192,46 @@
     <string>Settings</string>
    </property>
   </action>
+  <action name="actionopenfile">
+   <property name="icon">
+    <iconset resource="myimage.qrc">
+     <normaloff>:/image/open_file.png</normaloff>:/image/open_file.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open File</string>
+   </property>
+   <property name="toolTip">
+    <string>Open File</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionfinderstring">
+   <property name="icon">
+    <iconset resource="myimage.qrc">
+     <normaloff>:/image/finder_string.png</normaloff>:/image/finder_string.png</iconset>
+   </property>
+   <property name="text">
+    <string>Finderstring</string>
+   </property>
+   <property name="toolTip">
+    <string>Strings Finder</string>
+   </property>
+  </action>
+  <action name="actionsettingstools">
+   <property name="icon">
+    <iconset resource="myimage.qrc">
+     <normaloff>:/image/settings.png</normaloff>:/image/settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Settings</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="myimage.qrc"/>
+ </resources>
  <connections/>
 </ui>

@@ -5,24 +5,24 @@
 #include"mysettings.h"
 #include"utils.h"
 
+#include <QFontDialog>
+
 DialogSettings::DialogSettings(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogSettings)
 {
+    MySettings sett;
     ui->setupUi(this);
     uim= dynamic_cast<MainWindow*>(parent);
-    // const QString NAME1=,NAME2="bsrion4";
+    ui->textEditStyle1->setText(sett.getStyle1());
 
-    MySettings sett;
-     QColor oldColor = sett.getColorSelectButton();
-     QPalette pal =  ui->pushButton_color->palette();
-     pal.setColor(QPalette::Button, oldColor);
-     ui->pushButton_color->setAutoFillBackground(true);
-     ui->pushButton_color->setPalette(pal);
-     ui->pushButton_color->update();
-     ui->pushButton_color->setFlat(true);
-     ui->textEditStyle1->setText(sett.getStyle1());
-     QObject::connect(ui->textEditStyle1,SIGNAL(textChanged()),this,SLOT(on_textChangedStyle1()));
+    refrashButton(ui->pushButton_color,sett.getColorSelectButton());
+    refrashButton(ui->pushButton_sbc,sett.getColorselectBackground());
+    refrashButton(ui->pushButton_stxc,sett.getColorselectetedText());
+    refrashButton(ui->pushButton_background,sett.getColorBackground());
+    refrashButton(ui->pushButton_color_text,sett.getColorText());
+    ui->doubleSpinBox1->setValue(sett.getValueHeigcht());
+    QObject::connect(ui->textEditStyle1,SIGNAL(textChanged()),this,SLOT(on_textChangedStyle1()));
 
 }
 
@@ -46,12 +46,8 @@ void DialogSettings::on_pushButton_color_clicked()
     if(newColor !=oldColor&&newColor.isValid()){
         MySettings sett;
         sett.setColorSelectButton(newColor);
-        QPalette pal =  ui->pushButton_color->palette();
-        pal.setColor(QPalette::Button, newColor);
-        ui->pushButton_color->setAutoFillBackground(true);
-        ui->pushButton_color->setPalette(pal);
-        ui->pushButton_color->update();
-        ui->pushButton_color->setFlat(true);
+        refrashButton(ui->pushButton_background,newColor);
+
     }
 }
 
@@ -77,4 +73,101 @@ void DialogSettings::on_textChangedStyle1()
 void DialogSettings::on_pushButton_2_clicked()
 {
     this->close();
+}
+
+void DialogSettings::on_pushButton_font_dialog_clicked()
+{
+    MySettings d;
+    d.getfontDialog(this);
+    ui->textEditStyle1->setText(d.getStyle1());
+    uim->refrashstyleList1();
+}
+
+void DialogSettings::on_pushButton_sbc_clicked()
+{
+    MySettings sett;
+    QColor oldColor = sett.getColorselectBackground();
+    QColor newColor = QColorDialog::getColor(oldColor,parentWidget());
+
+    if(newColor !=oldColor&&newColor.isValid()){
+
+        sett.setColorselectBackground(newColor);
+        refrashButton(ui->pushButton_sbc,newColor);
+
+        ui->textEditStyle1->setText(sett.getStyle1());
+        uim->refrashstyleList1();
+    }
+}
+
+
+void DialogSettings::on_pushButton_sel_text_color_clicked()
+{
+
+}
+
+void DialogSettings::on_pushButton_stxc_clicked()
+{
+    MySettings sett;
+    QColor oldColor = sett.getColorselectetedText();
+    QColor newColor = QColorDialog::getColor(oldColor,parentWidget());
+
+    if(newColor !=oldColor&&newColor.isValid()){
+
+        sett.setColorselectetedText(newColor);
+        refrashButton(ui->pushButton_stxc,newColor);
+        ui->textEditStyle1->setText(sett.getStyle1());
+        uim->refrashstyleList1();
+    }
+}
+
+void DialogSettings::refrashButton( QPushButton *button, QColor color){
+
+    QPalette pal2 =  button->palette();
+    pal2.setColor(QPalette::Button, color);
+    button->setAutoFillBackground(true);
+    button->setPalette(pal2);
+    button->update();
+    button->setFlat(true);
+}
+
+void DialogSettings::on_pushButton_background_clicked()
+{
+    MySettings sett;
+    QColor oldColor = sett.getColorBackground();
+    QColor newColor = QColorDialog::getColor(oldColor,parentWidget());
+
+    if(newColor !=oldColor&&newColor.isValid()){
+
+        sett.setColorBackground(newColor);
+        refrashButton(ui->pushButton_stxc,newColor);
+        ui->textEditStyle1->setText(sett.getStyle1());
+        uim->refrashstyleList1();
+    }
+}
+
+void DialogSettings::on_pushButton_color_text_clicked()
+{
+    MySettings sett;
+    QColor oldColor = sett.getColorText();
+    QColor newColor = QColorDialog::getColor(oldColor,parentWidget());
+
+    if(newColor !=oldColor&&newColor.isValid()){
+
+        sett.setColorText(newColor);
+        refrashButton(ui->pushButton_color_text,newColor);
+        ui->textEditStyle1->setText(sett.getStyle1());
+        uim->refrashstyleList1();
+    }
+}
+
+void DialogSettings::on_spinBox1_valueChanged(int arg1)
+{
+
+}
+
+void DialogSettings::on_doubleSpinBox1_valueChanged(double arg1)
+{
+    MySettings sett;
+    sett.setValueHeigcht(arg1);
+    uim->refrashstyleList1();
 }

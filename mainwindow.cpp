@@ -15,6 +15,7 @@
 #include <dialogsearch.h>
 #include<dialogsettings.h>
 #include<utils.h>
+#include <qlabel.h>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -37,8 +38,18 @@ MainWindow::MainWindow(QWidget *parent) :
 
     addComboBox();
     connect(ui->actionSettings,SIGNAL(triggered(bool)),this,SLOT(on_actionSsettings_triggered(bool)));
+    connect(ui->actionsettingstools,SIGNAL(triggered(bool)),this,SLOT(on_actionSsettings_triggered(bool)));
+    connect(ui->actionopenfile,SIGNAL(triggered(bool)),this,SLOT(on_actionopen_triggered()));
+    connect(ui->actionfinderstring,SIGNAL(triggered(bool)),this,SLOT(on_actionSearch_list_triggered()));
     Utils::getStyle1(ui->listView);
-     ui->listView->setItemDelegate(new HtmlDelegate("-~~~-"));
+    ui->listView->setItemDelegate(new HtmlDelegate("-~~~-"));
+    this->labelfile=new QLabel(this);
+    labelfile->setText(" No selected file ");
+    ui->statusBar->addWidget(labelfile);
+    setselect=new QSet<int>();
+
+    restoreGeometry(settings->value("geometry").toByteArray());
+    restoreState(settings->value("windowState").toByteArray());
 
 
 
@@ -64,17 +75,20 @@ void MainWindow::on_load_data(const QString str)
     QFile file(str);
     if(!file.open(QIODevice::ReadOnly)) {
         QMessageBox::information(0, "error", file.errorString());
+        return;
     }
    // model->clear();
 
+    labelfile->setText(str);
     QTextStream in(&file);
+    in.setCodec("Utf-8");
     list_index.clear();
     list.clear();
     int i=0;
     while(!in.atEnd()) {
         QString line = in.readLine();
         list_index.append(QString::number(i++));
-        list.append(line);
+        list.append(line.trimmed());
     }
 
     model = new QStandardItemModel(ui->listView);
@@ -91,6 +105,7 @@ void MainWindow::on_load_data(const QString str)
 
     file.close();
     Utils::getStyle1(ui->listView);
+    ui->listView_1->setModel(NULL);
 
 }
 
@@ -192,21 +207,8 @@ void MainWindow::on_actionSearch_list_triggered()
 
 void MainWindow::on_actionSsettings_triggered(bool b)
 {
-
     DialogSettings d(this);
     d.exec();
-
-//    QMessageBox msgBox;
-//    msgBox.setWindowTitle("title");
-//    msgBox.setText("Question");
-//    msgBox.setStandardButtons(QMessageBox::Yes);
-//    msgBox.addButton(QMessageBox::No);
-//    msgBox.setDefaultButton(QMessageBox::No);
-//    if(msgBox.exec() == QMessageBox::Yes){
-//      // do something
-//    }else {
-//      // do something else
-//    }
 }
 
 void MainWindow::addComboBox()
@@ -233,18 +235,28 @@ void MainWindow::checkStyle1List(const QString s)
 
 void MainWindow::on_lineEdit_fast_finder_textChanged(const QString &arg1)
 {
-
     ui->listView->setItemDelegate(new HtmlDelegate(arg1));
-
-
-  //  ui->listView->setItemDelegate(new FinderColorDelegate(arg1));
-
     for(int i=0;i<list.size();i++){
         QString s=list[i];
-//        if(s.contains(str)){
-//            list_select.append(s);
-//            select_index.append(QString::number(i));
-//        }
     }
+}
+
+void MainWindow::refrashstyleList1()
+{
+
+    Utils::getStyle1(ui->listView);
+  ui->listView->setItemDelegate(new HtmlDelegate("-~~~-"));
+
+}
+
+void MainWindow::on_pushButton_previous_clicked()
+{
+
+    int i=setselect->size();
+    int di=setselect->size();
+}
+
+void MainWindow::on_pushButton_nex_clicked()
+{
 
 }
