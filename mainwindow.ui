@@ -161,14 +161,18 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="actionopenfile"/>
-   <addaction name="actionfinderstring"/>
-   <addaction name="actionsettingstools"/>
+   <addaction name="actionopen"/>
+   <addaction name="actionSearch_list"/>
+   <addaction name="actionSettings"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionopen">
    <property name="checkable">
     <bool>false</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="myimage.qrc">
+     <normaloff>:/image/open_file.png</normaloff>:/image/open_file.png</iconset>
    </property>
    <property name="text">
     <string>open</string>
@@ -183,43 +187,15 @@
    </property>
   </action>
   <action name="actionSearch_list">
-   <property name="text">
-    <string>Search list</string>
-   </property>
-  </action>
-  <action name="actionSettings">
-   <property name="text">
-    <string>Settings</string>
-   </property>
-  </action>
-  <action name="actionopenfile">
-   <property name="icon">
-    <iconset resource="myimage.qrc">
-     <normaloff>:/image/open_file.png</normaloff>:/image/open_file.png</iconset>
-   </property>
-   <property name="text">
-    <string>Open File</string>
-   </property>
-   <property name="toolTip">
-    <string>Open File</string>
-   </property>
-   <property name="shortcut">
-    <string>Ctrl+O</string>
-   </property>
-  </action>
-  <action name="actionfinderstring">
    <property name="icon">
     <iconset resource="myimage.qrc">
      <normaloff>:/image/finder_string.png</normaloff>:/image/finder_string.png</iconset>
    </property>
    <property name="text">
-    <string>Finderstring</string>
-   </property>
-   <property name="toolTip">
-    <string>Strings Finder</string>
+    <string>Search list</string>
    </property>
   </action>
-  <action name="actionsettingstools">
+  <action name="actionSettings">
    <property name="icon">
     <iconset resource="myimage.qrc">
      <normaloff>:/image/settings.png</normaloff>:/image/settings.png</iconset>

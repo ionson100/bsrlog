@@ -38,9 +38,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     addComboBox();
     connect(ui->actionSettings,SIGNAL(triggered(bool)),this,SLOT(on_actionSsettings_triggered(bool)));
-    connect(ui->actionsettingstools,SIGNAL(triggered(bool)),this,SLOT(on_actionSsettings_triggered(bool)));
-    connect(ui->actionopenfile,SIGNAL(triggered(bool)),this,SLOT(on_actionopen_triggered()));
-    connect(ui->actionfinderstring,SIGNAL(triggered(bool)),this,SLOT(on_actionSearch_list_triggered()));
     Utils::getStyle1(ui->listView);
     ui->listView->setItemDelegate(new HtmlDelegate("-~~~-"));
     this->labelfile=new QLabel(this);
