@@ -55,3 +55,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     myimage.qrc
+
+RC_FILE = myapp.rc

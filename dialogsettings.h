@@ -23,6 +23,13 @@ public:
     void refrashButton(const QPushButton *button, QColor color, MySettings sett);
     void refrashButton(QPushButton *button, QColor color);
 private slots:
+    void on_setcharsrt(int i){
+        MySettings sett;
+        sett.getSettings()->setValue("charset",i);
+        if(uim->currentOpenFile!=""){
+            uim->on_load_data(uim->currentOpenFile);
+        }
+    }
     void on_pushButton_3_clicked();
 
     void on_pushButton_color_clicked();

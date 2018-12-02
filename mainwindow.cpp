@@ -16,6 +16,8 @@
 #include<dialogsettings.h>
 #include<utils.h>
 #include <qlabel.h>
+#include <QCoreApplication>
+#include <QTextCodec>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -25,6 +27,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     ui->setupUi(this);
+     qRegisterMetaTypeStreamOperators<QList<QString> >("QList<QStrinf>");
+    QCoreApplication::setOrganizationName("bsr");
+    QCoreApplication::setOrganizationDomain("bsr.com");
+    QCoreApplication::setApplicationName("bsrion");
     ui->listView->setSelectionMode(QAbstractItemView::ExtendedSelection);
    // on_load_data("/home/bsr/aa.txt");
     new QShortcut(QKeySequence(Qt::CTRL + Qt::Key_F), this, SLOT(focusCombo()));
@@ -37,7 +43,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->splitter_2->setSizes({f1,f2});
 
     addComboBox();
-    connect(ui->actionSettings,SIGNAL(triggered(bool)),this,SLOT(on_actionSsettings_triggered(bool)));
+
+    connect(ui->actionSettings,SIGNAL(triggered(bool)),this,SLOT(on_actionSsettings_triggered()));
+    connect(ui->actionclose, SIGNAL(triggered()), this, SLOT(onAction()));
+
+
     Utils::getStyle1(ui->listView);
     ui->listView->setItemDelegate(new HtmlDelegate("-~~~-"));
     this->labelfile=new QLabel(this);
@@ -47,6 +57,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     restoreGeometry(settings->value("geometry").toByteArray());
     restoreState(settings->value("windowState").toByteArray());
+    QStringList argumentList = QCoreApplication::arguments();
+    if(argumentList.size()>1){
+        on_load_data(argumentList[1]);
+    }
+
+
 
 
 
@@ -71,14 +87,19 @@ void MainWindow::on_load_data(const QString str)
 
     QFile file(str);
     if(!file.open(QIODevice::ReadOnly)) {
-        QMessageBox::information(0, "error", file.errorString());
+        QMessageBox::information(this, "error", file.errorString());
         return;
     }
    // model->clear();
 
+    currentOpenFile=str;
+    MySettings set;
+    set.addOpenFiles(str);
     labelfile->setText(str);
     QTextStream in(&file);
-    in.setCodec("Utf-8");
+    const QString d=Utils::getCharset(set.getSettings()->value("charset",0).toInt());
+    QTextCodec *codec = QTextCodec::codecForName(QString(d).toUtf8());
+    in.setCodec(codec);
     list_index.clear();
     list.clear();
     int i=0;
@@ -102,7 +123,8 @@ void MainWindow::on_load_data(const QString str)
 
     file.close();
     Utils::getStyle1(ui->listView);
-    ui->listView_1->setModel(NULL);
+
+    ui->listView_1->setModel(static_cast<QAbstractItemModel*>(new QStandardItemModel()));
 
 }
 
@@ -176,7 +198,7 @@ void MainWindow::on_actionopen_triggered()
 ////перемещение сплиттера
 
 
-void MainWindow::on_splitter_2_splitterMoved(int pos, int index)
+void MainWindow::on_splitter_2_splitterMoved()
 {
     QList<int> d= ui->splitter_2->sizes();
     settings->setValue("f1", d[0]);
@@ -202,7 +224,7 @@ void MainWindow::on_actionSearch_list_triggered()
     }
 }
 
-void MainWindow::on_actionSsettings_triggered(bool b)
+void MainWindow::on_actionSsettings_triggered()
 {
     DialogSettings d(this);
     d.exec();
@@ -246,14 +268,44 @@ void MainWindow::refrashstyleList1()
 
 }
 
+void MainWindow::onAction()
+{
+    QObject *obj = sender();
+       QString objName = obj->objectName();
+       if(objName==ui->actionclose->objectName()){
+          QCoreApplication::exit(0) ;
+       }else{
+          on_load_data(objName);
+       }
+
+}
+
 void MainWindow::on_pushButton_previous_clicked()
 {
 
-    int i=setselect->size();
-    int di=setselect->size();
+
 }
 
 void MainWindow::on_pushButton_nex_clicked()
 {
 
+}
+
+void MainWindow::on_actionLast_opening_files_hovered()
+{
+    MySettings set;
+    QList<QString> list=set.getLastOpeningFiles();
+    //
+    if(list.size()==0)return;
+     QMenu * menu=new QMenu("sdsd",this);
+
+    for (int var = 0; var < list.size(); ++var) {
+        if(currentOpenFile==list[var])continue;
+        QAction *action=new QAction(list[var],this);
+        action->font().setPointSize(10);
+        action->setObjectName(list[var]);
+        connect(action, SIGNAL(triggered()), this, SLOT(onAction()));
+        menu->addAction(action);
+    }
+    ui->actionLast_opening_files->setMenu(menu);
 }

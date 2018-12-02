@@ -10,8 +10,17 @@
     <height>535</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>bsrlog</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="myimage.qrc">
+    <normaloff>:/image/settings.png</normaloff>:/image/settings.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -122,7 +131,13 @@
         </item>
        </layout>
       </widget>
-      <widget class="QListView" name="listView_1"/>
+      <widget class="QListView" name="listView_1">
+       <property name="font">
+        <font>
+         <pointsize>12</pointsize>
+        </font>
+       </property>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -133,15 +148,21 @@
      <x>0</x>
      <y>0</y>
      <width>1143</width>
-     <height>18</height>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <widget class="QMenu" name="menusettings">
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="separator"/>
     <addaction name="actionopen"/>
+    <addaction name="separator"/>
+    <addaction name="actionLast_opening_files"/>
     <addaction name="actionclose"/>
    </widget>
    <widget class="QMenu" name="menusettings_2">
@@ -185,6 +206,11 @@
    <property name="text">
     <string>close</string>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionSearch_list">
    <property name="icon">
@@ -194,6 +220,11 @@
    <property name="text">
     <string>Search list</string>
    </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionSettings">
    <property name="icon">
@@ -202,6 +233,21 @@
    </property>
    <property name="text">
     <string>Settings</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
+  </action>
+  <action name="actionLast_opening_files">
+   <property name="text">
+    <string>Last opening files</string>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
  </widget>

@@ -5,7 +5,7 @@
 
 MySettings::MySettings()
 {
-    this->settings=new  QSettings("bsr4","bsrion4");
+    this->settings=new  QSettings();
 
 }
 
@@ -134,12 +134,28 @@ void MySettings::setValueHeigcht(double value)
 
 }
 
-//int MySettings::getValueHeigcht()
-//{
-//
-//}
+QList<QString> MySettings::getLastOpeningFiles()
+{
+    QList<QString> myList = settings->value("openfiles").value<QList<QString> >();
+    return myList;
+}
 
-//void MySettings::setValueHeigcht(double value)
-//{
-;
-//}
+void MySettings::addOpenFiles(const QString str)
+{
+     QList<QString> myList = settings->value("openfiles").value<QList<QString> >();
+     bool r=false;
+     for (int i=0;i<myList.size();i++) {
+         if(myList[i]==str){
+             r=true;
+             break;
+         }
+     }
+     if(r){
+         return;
+     }
+     myList.append(str);
+     settings->setValue("openfiles", QVariant::fromValue(myList));
+     settings->sync();
+}
+
+

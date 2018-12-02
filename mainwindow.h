@@ -33,29 +33,20 @@ public:
  static QSet<int>* getSetSelect(){
      return setselect;
  }
+ QString currentOpenFile;
+  void on_load_data(QString str);
 
 private slots:
-    void on_actionSsettings_triggered(bool b);
+    void onAction();
+    void on_actionSsettings_triggered();
     void focusCombo();
     void on_listView_1_clicked( const QModelIndex &index);
-
     void on_pushButton_clicked();
-
     void on_actionopen_triggered();
-
-
-
-
-
-    void on_splitter_2_splitterMoved(int pos, int index);
-
+    void on_splitter_2_splitterMoved();
     void on_actionSearch_list_triggered();
-
-
     void on_lineEdit_fast_finder_textChanged(const QString &arg1);
-
     void on_pushButton_previous_clicked();
-
     void on_pushButton_nex_clicked();
     void closeEvent(QCloseEvent *event)
     {
@@ -66,20 +57,12 @@ private slots:
     }
 
 
+    void on_actionLast_opening_files_hovered();
+
 private:
-
-
-
     QLabel *labelfile;
-
      Ui::MainWindow *ui;
-
-
     QSettings *settings;
-
-
-
-    void on_load_data(QString str);
 
     QStringList list;
     QStringList list_index;
@@ -87,9 +70,6 @@ private:
     QStandardItemModel *model;
     QStringListModel *model_index;
     QStringList select_index;
-
-
-
 };
 
 #endif // MAINWINDOW_H

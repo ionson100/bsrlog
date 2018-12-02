@@ -24,6 +24,14 @@ DialogSettings::DialogSettings(QWidget *parent) :
     ui->doubleSpinBox1->setValue(sett.getValueHeigcht());
     QObject::connect(ui->textEditStyle1,SIGNAL(textChanged()),this,SLOT(on_textChangedStyle1()));
 
+    QList<QString> list=Utils::getColeList();
+    for (int var = 0; var < list.size(); ++var) {
+        ui->comboBox->addItem(list[var]);
+    }
+
+    ui->comboBox->setCurrentIndex(sett.getSettings()->value("charset",0).toInt());
+    connect(ui->comboBox,SIGNAL(currentIndexChanged(int)),SLOT(on_setcharsrt(int)));
+
 }
 
 DialogSettings::~DialogSettings()

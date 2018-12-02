@@ -62,6 +62,9 @@ public:
     double getValueHeigcht();
     void setValueHeigcht(double value);
 
+    QList<QString> getLastOpeningFiles();
+    void addOpenFiles(QString str);
+
 
 };
 
