@@ -28,13 +28,13 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
  void addComboBox();
- void checkStyle1List(const QString s);
+ void checkStyle1List(const QString &s);
  void refrashstyleList1();
  static QSet<int>* getSetSelect(){
      return setselect;
  }
  QString currentOpenFile;
-  void on_load_data(QString str);
+  void on_load_data(const QString &str);
 
 private slots:
     void onAction();

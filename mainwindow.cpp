@@ -2,7 +2,6 @@
 #include "htmldelegate.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
 #include <QFile>
 #include <QFileDialog>
 #include <QMessageBox>
@@ -44,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     addComboBox();
 
-    connect(ui->actionSettings,SIGNAL(triggered(bool)),this,SLOT(on_actionSsettings_triggered()));
+    connect(ui->actionSettings,SIGNAL(triggered()),this,SLOT(on_actionSsettings_triggered()));
     connect(ui->actionclose, SIGNAL(triggered()), this, SLOT(onAction()));
 
 
@@ -82,7 +81,7 @@ void MainWindow::focusCombo()
 }
 
 
-void MainWindow::on_load_data(const QString str)
+void MainWindow::on_load_data(const QString &str)
 {
 
     QFile file(str);
@@ -112,7 +111,7 @@ void MainWindow::on_load_data(const QString str)
     model = new QStandardItemModel(ui->listView);
 
     for(int i=0;i<list.size();i++){
-        QStandardItem *s=new QStandardItem(list[i]);
+       auto *s=new QStandardItem(list[i]);
 
         model->setItem( i, s );
     }
@@ -162,7 +161,7 @@ void MainWindow::on_pushButton_clicked()
             select_index.append(QString::number(i));
         }
     }
-    QStringListModel * m = new QStringListModel(this);
+    auto * m = new QStringListModel(this);
     m->setStringList(list_select);
     ui->listView_1->setUniformItemSizes(true);
     ui->listView_1->setModel(m);
@@ -246,7 +245,7 @@ void MainWindow::addComboBox()
             f.close();
 }
 
-void MainWindow::checkStyle1List(const QString s)
+void MainWindow::checkStyle1List(const QString &s)
 {
     ui->listView->setStyleSheet(s);
     ui->listView_1->show();
@@ -255,9 +254,7 @@ void MainWindow::checkStyle1List(const QString s)
 void MainWindow::on_lineEdit_fast_finder_textChanged(const QString &arg1)
 {
     ui->listView->setItemDelegate(new HtmlDelegate(arg1));
-    for(int i=0;i<list.size();i++){
-        QString s=list[i];
-    }
+
 }
 
 void MainWindow::refrashstyleList1()
@@ -296,16 +293,19 @@ void MainWindow::on_actionLast_opening_files_hovered()
     MySettings set;
     QList<QString> list=set.getLastOpeningFiles();
     //
-    if(list.size()==0)return;
+    if(list.empty())return;
      QMenu * menu=new QMenu("sdsd",this);
 
-    for (int var = 0; var < list.size(); ++var) {
-        if(currentOpenFile==list[var])continue;
-        QAction *action=new QAction(list[var],this);
-        action->font().setPointSize(10);
-        action->setObjectName(list[var]);
-        connect(action, SIGNAL(triggered()), this, SLOT(onAction()));
-        menu->addAction(action);
-    }
+     for(const QString &f:list){
+         if(currentOpenFile==f)continue;
+         auto *action=new QAction(f,this);
+
+
+         action->setObjectName(f);
+         connect(action, SIGNAL(triggered()), this, SLOT(onAction()));
+         menu->addAction(action);
+     }
+
+
     ui->actionLast_opening_files->setMenu(menu);
 }

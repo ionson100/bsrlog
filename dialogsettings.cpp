@@ -38,6 +38,8 @@ DialogSettings::~DialogSettings()
 {
     delete ui;
 }
+
+
 // edit color
 void DialogSettings::on_pushButton_3_clicked()
 {
@@ -68,8 +70,7 @@ void DialogSettings::on_pushButton_style1_save_clicked()
 
 void DialogSettings::on_pushButton_rolback_base_clicked()
 {
-    MySettings s;
-    ui->textEditStyle1->setText(s.getStyleString1());
+    ui->textEditStyle1->setText(MySettings::getStyleString1());
 }
 
 void DialogSettings::on_textChangedStyle1()
@@ -128,7 +129,7 @@ void DialogSettings::on_pushButton_stxc_clicked()
     }
 }
 
-void DialogSettings::refrashButton( QPushButton *button, QColor color){
+void DialogSettings::refrashButton( QPushButton *button, const QColor & color){
 
     QPalette pal2 =  button->palette();
     pal2.setColor(QPalette::Button, color);
@@ -168,10 +169,7 @@ void DialogSettings::on_pushButton_color_text_clicked()
     }
 }
 
-void DialogSettings::on_spinBox1_valueChanged(int arg1)
-{
 
-}
 
 void DialogSettings::on_doubleSpinBox1_valueChanged(double arg1)
 {

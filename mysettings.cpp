@@ -41,13 +41,13 @@ QColor MySettings::getColorSelectButton()
     return settings->value("colorrow", QColor(Qt::darkYellow)).value<QColor>();
 }
 
-void MySettings::setColorSelectButton(QColor col)
+void MySettings::setColorSelectButton(const QColor &col)
 {
    settings->setValue("colorrow",col);
    settings->sync();
 }
 
-void MySettings::setFont1(QFont fint)
+void MySettings::setFont1(const QFont &fint)
 {
     settings->setValue("font1", fint);
 
@@ -82,7 +82,7 @@ QColor MySettings::getColorselectBackground()
     return settings->value("colorsbc", QColor(Qt::darkYellow)).value<QColor>();
 }
 
-void MySettings::setColorselectBackground(QColor color)
+void MySettings::setColorselectBackground(const QColor &color)
 {
     settings->setValue("colorsbc",color);
     settings->sync();
@@ -93,7 +93,7 @@ QColor MySettings::getColorselectetedText()
     return settings->value("colorsbt", QColor(Qt::black)).value<QColor>();
 }
 
-void MySettings::setColorselectetedText(QColor color)
+void MySettings::setColorselectetedText(const QColor &color)
 {
     settings->setValue("colorsbt",color);
     settings->sync();
@@ -105,7 +105,7 @@ QColor MySettings::getColorBackground()
     return settings->value("colorbg", QColor(Qt::white)).value<QColor>();
 }
 
-void MySettings::setColorBackground(QColor color)
+void MySettings::setColorBackground(const QColor &color)
 {
     settings->setValue("colorbg",color);
     settings->sync();
@@ -116,7 +116,7 @@ QColor MySettings::getColorText()
     return settings->value("colortext", QColor(Qt::black)).value<QColor>();
 }
 
-void MySettings::setColorText(QColor color)
+void MySettings::setColorText(const QColor &color)
 {
     settings->setValue("colortext",color);
     settings->sync();
@@ -140,16 +140,17 @@ QList<QString> MySettings::getLastOpeningFiles()
     return myList;
 }
 
-void MySettings::addOpenFiles(const QString str)
+void MySettings::addOpenFiles(const QString &str)
 {
      QList<QString> myList = settings->value("openfiles").value<QList<QString> >();
      bool r=false;
-     for (int i=0;i<myList.size();i++) {
-         if(myList[i]==str){
+     for (auto & elem : myList){
+         if(elem==str){
              r=true;
              break;
          }
      }
+
      if(r){
          return;
      }

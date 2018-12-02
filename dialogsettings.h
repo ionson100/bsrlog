@@ -21,7 +21,7 @@ public:
     ~DialogSettings();
 
     void refrashButton(const QPushButton *button, QColor color, MySettings sett);
-    void refrashButton(QPushButton *button, QColor color);
+    void refrashButton(QPushButton *button, const QColor & color);
 private slots:
     void on_setcharsrt(int i){
         MySettings sett;
@@ -53,7 +53,7 @@ private slots:
 
     void on_pushButton_color_text_clicked();
 
-    void on_spinBox1_valueChanged(int arg1);
+
 
     void on_doubleSpinBox1_valueChanged(double arg1);
 

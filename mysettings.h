@@ -43,27 +43,27 @@ public:
     }
 
     QColor getColorSelectButton();
-    void setColorSelectButton(QColor col);
-    void setFont1(QFont fint);
+    void setColorSelectButton(const QColor &col);
+    void setFont1(const QFont &fint);
     void getfontDialog( QWidget *parent);
     QFont getFont1();
     QColor getColorselectBackground();
-    void setColorselectBackground(QColor color);
+    void setColorselectBackground(const QColor &color);
 
     QColor getColorselectetedText();
-    void setColorselectetedText(QColor color);
+    void setColorselectetedText(const QColor &color);
 
     QColor getColorBackground();
-    void setColorBackground(QColor color);
+    void setColorBackground(const QColor &color);
 
     QColor getColorText();
-    void setColorText(QColor color);
+    void setColorText(const QColor &color);
 
     double getValueHeigcht();
     void setValueHeigcht(double value);
 
     QList<QString> getLastOpeningFiles();
-    void addOpenFiles(QString str);
+    void addOpenFiles(const QString &str);
 
 
 };
