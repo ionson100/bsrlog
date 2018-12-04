@@ -7,3 +7,8 @@
 
 
 
+
+void Utils::loadRemoteDate()
+{
+
+}

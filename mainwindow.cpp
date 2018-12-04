@@ -17,6 +17,11 @@
 #include <qlabel.h>
 #include <QCoreApplication>
 #include <QTextCodec>
+#include <QNetworkReply>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QJsonArray>
+#include <QtSql>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -45,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->actionSettings,SIGNAL(triggered()),this,SLOT(on_actionSsettings_triggered()));
     connect(ui->actionclose, SIGNAL(triggered()), this, SLOT(onAction()));
+//    connect(ui->action_download_data,SIGNAL(triggered()),this,SLOT(on_Reguest()));
 
 
     Utils::getStyle1(ui->listView);
@@ -60,18 +66,16 @@ MainWindow::MainWindow(QWidget *parent) :
     if(argumentList.size()>1){
         on_load_data(argumentList[1]);
     }
-
-
-
-
-
-
+     manager = new SslNetworkAccessManager();
+     connect(manager, SIGNAL(finished(QNetworkReply*)),
+             this, SLOT(replyFinished(QNetworkReply*)));
 
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+     delete manager;
 }
 
 void MainWindow::focusCombo()
@@ -124,6 +128,7 @@ void MainWindow::on_load_data(const QString &str)
     Utils::getStyle1(ui->listView);
 
     ui->listView_1->setModel(static_cast<QAbstractItemModel*>(new QStandardItemModel()));
+
 
 }
 
@@ -213,6 +218,10 @@ void MainWindow::on_actionSearch_list_triggered()
     switch( s.exec() ) {
         case QDialog::Accepted:
 
+
+
+
+
             break;
         case QDialog::Rejected:
 
@@ -226,7 +235,15 @@ void MainWindow::on_actionSearch_list_triggered()
 void MainWindow::on_actionSsettings_triggered()
 {
     DialogSettings d(this);
-    d.exec();
+     d.exec() ;
+
+
+        MySettings sett;
+        sett.setUseRemote(d.getUsageRemote());
+        sett.setRemoteUrl(d.getUrlRemote());
+        sett.setTimerIntervalRemote(d.getTimmerIntevalRemote());
+
+
 }
 
 void MainWindow::addComboBox()
@@ -288,24 +305,66 @@ void MainWindow::on_pushButton_nex_clicked()
 
 }
 
-void MainWindow::on_actionLast_opening_files_hovered()
+void MainWindow::replyFinished(QNetworkReply * reply)
 {
-    MySettings set;
-    QList<QString> list=set.getLastOpeningFiles();
-    //
-    if(list.empty())return;
-     QMenu * menu=new QMenu("sdsd",this);
-
-     for(const QString &f:list){
-         if(currentOpenFile==f)continue;
-         auto *action=new QAction(f,this);
 
 
-         action->setObjectName(f);
-         connect(action, SIGNAL(triggered()), this, SLOT(onAction()));
-         menu->addAction(action);
-     }
+    if (reply->error()) {
+           qDebug() << reply->errorString();
+           return;
+       }
+   // QString answer = reply->readAll();
+    QJsonDocument document = QJsonDocument::fromJson(reply->readAll());
+    QJsonObject root = document.object();
+    QJsonValue jv = root.value("data");
+    // Если значение является массивом, ...
+           if(jv.isArray()){
+               // ... то забираем массив из данного свойства
+               QJsonArray ja = jv.toArray();
+               // Перебирая все элементы массива ...
+               for(int i = 0; i < ja.count(); i++){
+                   qDebug() << i;
+                  // QJsonObject subtree = ja.at(i).toObject();
+                   // Забираем значения свойств имени и фамилии добавляя их в textEdit
+//                   ui->textEdit->append(subtree.value("firstName").toString() +
+//                                        " " +
+//                                        subtree.value("lastName").toString());
+               }
+           }
+
+           QSqlDatabase sdb = QSqlDatabase::addDatabase("QSQLITE");
+           sdb.setDatabaseName("db_name.sqlite");
+
+           if (!sdb.open()) {
+                qDebug() << sdb.lastError().text();
+           }
+     qDebug() << QString::number(document.isArray()) << QDate::currentDate();
+   //qDebug << "dsd";//QString::number(document.isArray());
 
 
-    ui->actionLast_opening_files->setMenu(menu);
+
+        //qDebug() << answer;
+
+
+//    QByteArray data=r->readAll();
+//    QMessageBox msgBox;
+//    msgBox.setText(QString::number(data.length()));
+//    msgBox.exec();
+}
+
+void MainWindow::on_Reguest()
+{
+
+}
+
+
+void MainWindow::on_action_download_data_triggered()
+{
+
+    MySettings sett;
+
+    QString s=sett.getRemoteUrl();
+    QString url=QString(s).arg(QString::number(0));
+    manager->get(QNetworkRequest(QUrl(url)));
+
 }

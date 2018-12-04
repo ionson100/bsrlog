@@ -7,6 +7,22 @@
 
 #include <QFontDialog>
 
+bool DialogSettings::getUsageRemote()
+{
+
+    return !ui->checkBox_use_remote->checkState()==Qt::Unchecked;
+}
+
+QString DialogSettings::getUrlRemote()
+{
+    return ui->lineEdit_remote_url->text();
+}
+
+int DialogSettings::getTimmerIntevalRemote()
+{
+    return ui->spinBox_timer_value->value();
+}
+
 DialogSettings::DialogSettings(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DialogSettings)
@@ -31,6 +47,9 @@ DialogSettings::DialogSettings(QWidget *parent) :
 
     ui->comboBox->setCurrentIndex(sett.getSettings()->value("charset",0).toInt());
     connect(ui->comboBox,SIGNAL(currentIndexChanged(int)),SLOT(on_setcharsrt(int)));
+    ui->checkBox_use_remote->setChecked(sett.getUseRemote());
+    ui->lineEdit_remote_url->setText(sett.getRemoteUrl());
+    ui->spinBox_timer_value->setValue(sett.getTimerIntervalRemote());
 
 }
 

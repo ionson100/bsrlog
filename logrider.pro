@@ -23,6 +23,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 CONFIG += c++11
+QT += network
+QT += sql
 
 SOURCES += \
         main.cpp \
@@ -32,7 +34,8 @@ SOURCES += \
     utils.cpp \
     mysettings.cpp \
     findercolordelegate.cpp \
-    htmldelegate.cpp
+    htmldelegate.cpp \
+    sslnetworkaccessmanager.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -41,7 +44,8 @@ HEADERS += \
     utils.h \
     mysettings.h \
     findercolordelegate.h \
-    htmldelegate.h
+    htmldelegate.h \
+    sslnetworkaccessmanager.h
 
 FORMS += \
         mainwindow.ui \

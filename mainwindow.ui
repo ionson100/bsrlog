@@ -148,7 +148,7 @@
      <x>0</x>
      <y>0</y>
      <width>1143</width>
-     <height>21</height>
+     <height>28</height>
     </rect>
    </property>
    <property name="font">
@@ -172,8 +172,17 @@
     <addaction name="actionSearch_list"/>
     <addaction name="actionSettings"/>
    </widget>
+   <widget class="QMenu" name="menuRemote">
+    <property name="title">
+     <string>Remote</string>
+    </property>
+    <addaction name="action_delete_all"/>
+    <addaction name="action_download_data"/>
+    <addaction name="action_update"/>
+   </widget>
    <addaction name="menusettings"/>
    <addaction name="menusettings_2"/>
+   <addaction name="menuRemote"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -248,6 +257,21 @@
     <font>
      <pointsize>10</pointsize>
     </font>
+   </property>
+  </action>
+  <action name="action_delete_all">
+   <property name="text">
+    <string>Delete all</string>
+   </property>
+  </action>
+  <action name="action_download_data">
+   <property name="text">
+    <string>Download</string>
+   </property>
+  </action>
+  <action name="action_update">
+   <property name="text">
+    <string>Update</string>
    </property>
   </action>
  </widget>

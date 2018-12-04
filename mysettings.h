@@ -65,6 +65,15 @@ public:
     QList<QString> getLastOpeningFiles();
     void addOpenFiles(const QString &str);
 
+    bool getUseRemote();
+    void setUseRemote(bool b);
+
+    QString getRemoteUrl();
+    void setRemoteUrl(const QString &s);
+
+    int getTimerIntervalRemote();
+    void setTimerIntervalRemote(int i);
+
 
 };
 

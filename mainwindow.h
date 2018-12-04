@@ -2,8 +2,10 @@
 #define MAINWINDOW_H
 
 #include "mysettings.h"
+#include "sslnetworkaccessmanager.h"
 
 #include <QMainWindow>
+#include <QNetworkAccessManager>
 #include <QSet>
 #include <QSettings>
 #include <QStandardItem>
@@ -35,8 +37,10 @@ public:
  }
  QString currentOpenFile;
   void on_load_data(const QString &str);
+public slots:
 
 private slots:
+  void replyFinished(QNetworkReply* r);
     void onAction();
     void on_actionSsettings_triggered();
     void focusCombo();
@@ -57,9 +61,14 @@ private slots:
     }
 
 
+
     void on_actionLast_opening_files_hovered();
 
+    void on_action_download_data_triggered();
+
 private:
+    void on_Reguest();
+    SslNetworkAccessManager *manager;
     QLabel *labelfile;
      Ui::MainWindow *ui;
     QSettings *settings;

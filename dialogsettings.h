@@ -16,6 +16,12 @@ class DialogSettings : public QDialog
     Q_OBJECT
 
 public:
+
+    bool getUsageRemote();
+    QString getUrlRemote();
+    int getTimmerIntevalRemote();
+
+
     MainWindow *uim;
     explicit DialogSettings(QWidget *parent = 0);
     ~DialogSettings();
@@ -58,10 +64,11 @@ private slots:
     void on_doubleSpinBox1_valueChanged(double arg1);
 
 private:
+       Ui::DialogSettings *ui;
     void refrashButton(const QPushButton button,QColor color, MySettings sett);
 
 
-    Ui::DialogSettings *ui;
+
 };
 
 #endif // DIALOGSETTINGS_H

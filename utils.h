@@ -75,6 +75,8 @@ public:
     static QString getCharset(int i){
         return getColeList()[i];
     }
+
+    void loadRemoteDate();
 };
 
 #endif // UTILS_H

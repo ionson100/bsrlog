@@ -159,4 +159,38 @@ void MySettings::addOpenFiles(const QString &str)
      settings->sync();
 }
 
+bool MySettings::getUseRemote()
+{
+     bool b = settings->value("usermote",false).toBool();
+     return b;
+}
+
+void MySettings::setUseRemote(bool b)
+{
+    settings->setValue("usermote",b);
+    settings->sync();
+}
+
+QString MySettings::getRemoteUrl()
+{
+    return settings->value("urlremote","").toString();
+}
+
+void MySettings::setRemoteUrl(const QString &s)
+{
+    settings->setValue("urlremote",s);
+    settings->sync();
+}
+
+int MySettings::getTimerIntervalRemote()
+{
+    return settings->value("timerremote",60).toInt();
+}
+
+void MySettings::setTimerIntervalRemote(int i)
+{
+    settings->setValue("timerremote",i);
+    settings->sync();
+}
+
 

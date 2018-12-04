@@ -19,7 +19,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>3</number>
        </property>
        <widget class="QWidget" name="tab">
         <attribute name="title">
@@ -117,7 +117,7 @@
            <x>31</x>
            <y>29</y>
            <width>351</width>
-           <height>227</height>
+           <height>250</height>
           </rect>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -184,6 +184,320 @@
            </widget>
           </item>
          </layout>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_4">
+        <attribute name="title">
+         <string>Remote</string>
+        </attribute>
+        <widget class="QLineEdit" name="lineEdit">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>40</y>
+           <width>681</width>
+           <height>27</height>
+          </rect>
+         </property>
+        </widget>
+        <widget class="QSpinBox" name="spinBox">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>90</y>
+           <width>181</width>
+           <height>27</height>
+          </rect>
+         </property>
+         <property name="minimum">
+          <number>60</number>
+         </property>
+         <property name="maximum">
+          <number>300</number>
+         </property>
+         <property name="singleStep">
+          <number>10</number>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>20</y>
+           <width>151</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Remote URL: https</string>
+         </property>
+        </widget>
+        <widget class="QLabel" name="label_3">
+         <property name="geometry">
+          <rect>
+           <x>10</x>
+           <y>70</y>
+           <width>201</width>
+           <height>17</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Polling interval:</string>
+         </property>
+        </widget>
+        <widget class="QTabWidget" name="tabWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>-30</y>
+           <width>701</width>
+           <height>382</height>
+          </rect>
+         </property>
+         <property name="currentIndex">
+          <number>3</number>
+         </property>
+         <widget class="QWidget" name="tab_5">
+          <attribute name="title">
+           <string>Style Find</string>
+          </attribute>
+          <widget class="QComboBox" name="comboBox_2">
+           <property name="geometry">
+            <rect>
+             <x>30</x>
+             <y>30</y>
+             <width>300</width>
+             <height>23</height>
+            </rect>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>300</width>
+             <height>0</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>16777215</width>
+             <height>33</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <pointsize>9</pointsize>
+            </font>
+           </property>
+           <property name="contextMenuPolicy">
+            <enum>Qt::ActionsContextMenu</enum>
+           </property>
+           <property name="editable">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tab_6">
+          <attribute name="title">
+           <string>Style Log</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="0" column="0">
+            <widget class="QTextEdit" name="textEditStyle1_2">
+             <property name="font">
+              <font>
+               <pointsize>16</pointsize>
+               <italic>false</italic>
+              </font>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <spacer name="horizontalSpacer_3">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>408</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_style1_save_2">
+               <property name="text">
+                <string>Save</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_rolback_base_2">
+               <property name="text">
+                <string>Default</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+         <widget class="QWidget" name="tab_7">
+          <attribute name="title">
+           <string>Страница</string>
+          </attribute>
+          <widget class="QWidget" name="layoutWidget_2">
+           <property name="geometry">
+            <rect>
+             <x>31</x>
+             <y>29</y>
+             <width>351</width>
+             <height>250</height>
+            </rect>
+           </property>
+           <layout class="QVBoxLayout" name="verticalLayout_3">
+            <item>
+             <widget class="QPushButton" name="pushButton_font_dialog_2">
+              <property name="text">
+               <string>PushButton</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_sbc_2">
+              <property name="text">
+               <string>selection-background-color</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_stxc_2">
+              <property name="text">
+               <string>slected-text-color</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_background_2">
+              <property name="text">
+               <string>background</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_color_text_2">
+              <property name="text">
+               <string>text</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="pushButton_color_2">
+              <property name="text">
+               <string>finder rows</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_4">
+              <property name="text">
+               <string>height item</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QDoubleSpinBox" name="doubleSpinBox1_2">
+              <property name="minimum">
+               <double>0.500000000000000</double>
+              </property>
+              <property name="maximum">
+               <double>5.000000000000000</double>
+              </property>
+              <property name="singleStep">
+               <double>0.100000000000000</double>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+         <widget class="QWidget" name="tab_8">
+          <attribute name="title">
+           <string>Remote</string>
+          </attribute>
+          <widget class="QLineEdit" name="lineEdit_remote_url">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>110</y>
+             <width>681</width>
+             <height>27</height>
+            </rect>
+           </property>
+          </widget>
+          <widget class="QSpinBox" name="spinBox_timer_value">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>160</y>
+             <width>181</width>
+             <height>27</height>
+            </rect>
+           </property>
+           <property name="minimum">
+            <number>60</number>
+           </property>
+           <property name="maximum">
+            <number>300</number>
+           </property>
+           <property name="singleStep">
+            <number>10</number>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_5">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>90</y>
+             <width>151</width>
+             <height>17</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Remote URL: https</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_6">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>140</y>
+             <width>201</width>
+             <height>17</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Polling interval:</string>
+           </property>
+          </widget>
+          <widget class="QCheckBox" name="checkBox_use_remote">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>86</width>
+             <height>22</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Usge</string>
+           </property>
+           <property name="checked">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </widget>
         </widget>
        </widget>
       </widget>
