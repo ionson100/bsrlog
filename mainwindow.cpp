@@ -70,6 +70,7 @@ MainWindow::MainWindow(QWidget *parent) :
      connect(manager, SIGNAL(finished(QNetworkReply*)),
              this, SLOT(replyFinished(QNetworkReply*)));
 
+
 }
 
 MainWindow::~MainWindow()
@@ -113,6 +114,7 @@ void MainWindow::on_load_data(const QString &str)
     }
 
     model = new QStandardItemModel(ui->listView);
+    ui->listView->setEditTriggers( QAbstractItemView::NoEditTriggers );
 
     for(int i=0;i<list.size();i++){
        auto *s=new QStandardItem(list[i]);
@@ -277,8 +279,14 @@ void MainWindow::on_lineEdit_fast_finder_textChanged(const QString &arg1)
 void MainWindow::refrashstyleList1()
 {
 
-    Utils::getStyle1(ui->listView);
-  ui->listView->setItemDelegate(new HtmlDelegate("-~~~-"));
+
+        Utils::getStyle1(ui->listView);
+        if(this->list.isEmpty()) return;
+        ui->listView->model()->dataChanged(ui->listView->model()->index(0,0),ui->listView->model()->index(100,0));
+
+
+
+  //ui->listView->setItemDelegate(new HtmlDelegate("-~~~-"));
 
 }
 

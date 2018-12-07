@@ -193,4 +193,14 @@ void MySettings::setTimerIntervalRemote(int i)
     settings->sync();
 }
 
+bool MySettings::getUseNumber()
+{
+    return settings->value("usenumber",false).toBool();
+}
+
+void MySettings::setUseNumber(bool i)
+{
+    settings->setValue("usenumber",i);
+}
+
 

@@ -74,6 +74,9 @@ public:
     int getTimerIntervalRemote();
     void setTimerIntervalRemote(int i);
 
+    bool getUseNumber();
+    void setUseNumber(bool i);
+
 
 };
 

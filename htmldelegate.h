@@ -47,7 +47,12 @@ protected:
                 s.replace(str,"<font color=\"Red\">"+this->str+"</font>");
             }
 
-            s="<font color=\""+text.name()+"\">"+s+"</font>";
+            if (optionV4.state & QStyle::State_Selected){
+                s="<font color=\""+set->getColorselectetedText().name()+"\">"+s+"</font>";
+            }else{
+                s="<font color=\""+text.name()+"\">"+s+"</font>";
+            }
+
             doc.setDefaultFont(this->font);
             doc.setHtml(s);
             /// Painting item without text

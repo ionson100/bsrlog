@@ -37,6 +37,7 @@ public:
 
 
 
+        s="<font color=\"red\">This is some text!</font>"+s;
 
         if( option.state & QStyle::State_Selected )//it is your selection
         {
@@ -46,7 +47,7 @@ public:
         painter->drawText(options.rect,s);//text of item
 
         if(s.contains(str)){
-            QRect r3( option.rect.left(), option.rect.top()+5, 11, 16 );
+            QRect r3( option.rect.left(), option.rect.top(), 11, 16 );
             painter->drawRect(r3);
         }
 
