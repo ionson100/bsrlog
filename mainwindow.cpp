@@ -144,6 +144,7 @@ void MainWindow::on_listView_1_clicked(const QModelIndex &index)
        // QMessageBox::information(0, "info", select_index[index.row()]);
         QModelIndex indexOfTheCellIWant = model->index(indexs, 0);
         ui->listView->setCurrentIndex(indexOfTheCellIWant);
+        ui->listView->scrollTo(indexOfTheCellIWant,QAbstractItemView::PositionAtCenter);
 }
 
 void MainWindow::on_pushButton_clicked()
